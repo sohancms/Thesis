@@ -40,3 +40,9 @@ y_test_pred = model.predict(X_test)
 # Compute accuracy
 test_accuracy = accuracy_score(y_test, y_test_pred)
 print(f"Test Accuracy: {test_accuracy:.2%}")
+
+
+#show sen.........
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+print("Classification Report:")
+print(classification_report(y_test, y_test_pred))

@@ -37,6 +37,13 @@ print("Ytest :")
 ytest.shape
 print(ytest)
 
+from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
+xtrain['column_name'] = label_encoder.fit_transform(xtrain['column_name'])
+
+
+
+
 from sklearn.svm import SVC
 SV=SVC()
 SV.fit(xtrain,ytrain)
