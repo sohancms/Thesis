@@ -10,7 +10,7 @@ df=pd.read_csv("E:\\CSE\\4th Year 1st Semester\\( CSE 4180 ) Thesis_Project_(Par
 #print(df.head(20))
 
 df1=df.iloc[:,3:13].values
-print(df1)
+#print(df1)
 
 data_cleaned = df.drop(columns=["Unnamed: 0", "name"])
 
@@ -30,7 +30,7 @@ y = data_cleaned["matching condition"]
 
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.20, random_state=50)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.30, random_state=100)
 
 # Train the XGBoost model
 model = XGBClassifier()
@@ -52,3 +52,8 @@ predictions = [round(value) for value in y_test_pred]
 test_accuracy = accuracy_score(y_test, predictions)
 print("Accuracy: %.2f%%" % (test_accuracy*100.0))
 
+
+#show precision    recall  f1-score   support
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+print("Classification Report:")
+print(classification_report(y_test, y_test_pred))
