@@ -22,21 +22,21 @@ y=df1.iloc[:,5:6]
 from sklearn.model_selection import train_test_split
 xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=.5,random_state=30)
 xtrain.shape
-#print("Xtrain :")
-#print(xtrain)
+print("Xtrain :")
+print(xtrain)
 
-#print("Ytrain :")
+print("Ytrain :")
 ytrain.shape
-#print(ytrain)
+print(ytrain)
 
 
-#print("Xtest : ")
+print("Xtest : ")
 xtest.shape
-#print(xtest)
+print(xtest)
 
-#print("Ytest :")
+print("Ytest :")
 ytest.shape
-#print(ytest)
+print(ytest)
 
 #from sklearn.preprocessing import LabelEncoder
 #label_encoder = LabelEncoder()
@@ -44,18 +44,18 @@ ytest.shape
 
 
 
+# In[100]:
 
 
-from sklearn.svm import SVR
-from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-sv=SVR()
-scaler = StandardScaler()
-xtrain_scaled = scaler.fit_transform(xtrain)
-xtest_scaled = scaler.transform(xtest)
+from sklearn.linear_model import LogisticRegression
+model=LogisticRegression()
+ytrain = np.round(ytrain).astype(int)  # Convert continuous values to nearest integer
 ytrain = ytrain.values.ravel()
-sv.fit(xtrain_scaled,ytrain)
-accuracy = sv.score(xtest_scaled,ytest)
+model.fit(xtrain,ytrain)
+model.predict(xtest)
+ytest = np.round(ytest).astype(int)  # Convert continuous values to integer classes
+accuracy = model.score(xtest, ytest)
 print(f"Model Accuracy: {accuracy:.2f}")
 print("Accuracy: %.2f%%" % (accuracy*100.0))
+
+#get_ipython().system('pip install scikit-learn imbalanced-learn')
